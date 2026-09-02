@@ -1,7 +1,9 @@
 name = "sammytopia"
 
 compatibility_date = "2026-06-01"
-pages_build_output_dir = "dist"
+
+[assets]
+directory = "./dist"
 
 [[d1_databases]]
 binding = "DB"
@@ -12,6 +14,5 @@ database_id = "b7a9e254-299d-4d90-9025-6fe6515775f9"
 binding = "MEDIA"
 bucket_name = "sammytopia-media"
 
-# ADMIN_PASSWORD is set as a secret, not here:
-#   in the Cloudflare dashboard -> Workers & Pages -> sammytopia -> Settings -> Variables and Secrets
-# Never commit the real admin password to GitHub.
+# ADMIN_PASSWORD is set as a secret in the Cloudflare dashboard.
+# Never put the real admin password in this file.
