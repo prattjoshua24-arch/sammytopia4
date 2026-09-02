@@ -1,0 +1,414 @@
+/*
+  SAMMYTOPIA — design tokens
+  -----------------------------------------------------------------
+  Subject: a personal literary/creative universe — manuscripts, a
+  worship ministry, an education resource, a family history essay.
+  This is not a SaaS product or a résumé; it should read like the
+  frontispiece of a book crossed with a study.
+
+  Color (named, not decorative):
+    --ink        #0B1220   deep navy-black — body text, chrome
+    --parchment  #F6F0DF   warm reading surface for long-form prose
+    --gold       #C9A227   the Sammytopia star / "no limits" accent
+    --ember      #B5431F   the Flame of Covenant — used only inside
+                            the Joshuana reader, never as a site-wide
+                            accent, so it stays special to that book
+    --forest     #1E4638   English Made Simple / study sections
+    --paper-line #E4D9BC   hairline rule on parchment
+
+  Type:
+    display — "Fraunces", a warm literary serif with real optical
+      weight, used for titles and the Sammytopia wordmark
+    body    — "Literata", a book-text serif, for manuscript reading
+    ui      — system-ui, for navigation, labels, buttons, admin forms
+
+  Layout: a centred reading column (65ch) for every manuscript page;
+  the homepage is the one asymmetric/hero moment. No card grids —
+  sections are separated by hairline rules and generous whitespace,
+  the way a printed programme or index separates chapters.
+
+  Motion: reduced to one place — the Joshuana intro sequence — and
+  respects prefers-reduced-motion everywhere.
+*/
+
+:root {
+  --ink: #0b1220;
+  --ink-soft: #2a3346;
+  --parchment: #f6f0df;
+  --parchment-dim: #efe6cd;
+  --gold: #c9a227;
+  --gold-dim: #a5841c;
+  --ember: #b5431f;
+  --forest: #1e4638;
+  --paper-line: #e4d9bc;
+  --white: #fdfcf8;
+
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "Literata", Georgia, "Times New Roman", serif;
+  --font-ui: -apple-system, "Segoe UI", system-ui, sans-serif;
+
+  --measure: 65ch;
+  --radius: 3px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --parchment: #14100a;
+    --parchment-dim: #1b160e;
+    --paper-line: #34291a;
+    --white: #100b16;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--white);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+}
+
+a {
+  color: inherit;
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+button, input, textarea, select {
+  font-family: var(--font-ui);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.reading-column {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--ink);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.25);
+}
+
+.site-header nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 24px;
+  overflow-x: auto;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  color: var(--gold);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 18px;
+  flex-wrap: nowrap;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: rgba(253, 252, 248, 0.75);
+  white-space: nowrap;
+}
+
+.nav-links a:hover, .nav-links a:focus-visible {
+  color: var(--gold);
+}
+
+.hero {
+  padding: 64px 24px 48px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% -10%, rgba(201, 162, 39, 0.18), transparent 60%),
+    var(--ink);
+}
+
+.hero .eyebrow {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--gold-dim);
+  margin-bottom: 12px;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.hero .tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--gold);
+  font-size: clamp(1rem, 3vw, 1.3rem);
+  margin-bottom: 4px;
+}
+
+.hero .subtagline {
+  color: rgba(253, 252, 248, 0.7);
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+}
+
+section.divider-top {
+  border-top: 1px solid rgba(201, 162, 39, 0.2);
+}
+
+.section {
+  padding: 48px 24px;
+}
+
+.section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
+.feature-list {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid rgba(201, 162, 39, 0.15);
+}
+
+.feature-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: baseline;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(201, 162, 39, 0.15);
+  text-decoration: none;
+  color: inherit;
+}
+
+.feature-row:hover .feature-title {
+  color: var(--gold);
+}
+
+.feature-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+}
+
+.feature-meta {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: rgba(253, 252, 248, 0.5);
+  white-space: nowrap;
+}
+
+.feature-desc {
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  color: rgba(253, 252, 248, 0.65);
+  grid-column: 1 / -1;
+  margin-top: 4px;
+}
+
+/* Reading surfaces (manuscripts, articles, lessons) sit on parchment */
+.reader-page {
+  background: var(--parchment);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+.reader-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 20px;
+  background: var(--parchment);
+  border-bottom: 1px solid var(--paper-line);
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+}
+
+.reader-toolbar button {
+  background: none;
+  border: 1px solid var(--paper-line);
+  border-radius: var(--radius);
+  padding: 6px 10px;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.reader-toolbar button:hover {
+  border-color: var(--gold-dim);
+}
+
+.reader-body {
+  padding: 40px 20px 80px;
+}
+
+.reader-body h1 {
+  color: var(--ink);
+}
+
+.reader-body .chapter-eyebrow {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  color: var(--gold-dim);
+  margin-bottom: 4px;
+}
+
+.reader-body p {
+  margin: 0 0 1.1em;
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 20px 60px;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+}
+
+.chapter-nav a {
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-dim);
+}
+
+/* Joshuana gets its one special moment: a starfield backdrop on its
+   own table-of-contents page only — not carried into every page. */
+.joshuana-toc {
+  background: radial-gradient(ellipse at top, #16233d 0%, #0b1220 55%, #060a13 100%);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.joshuana-toc .stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .joshuana-toc .stars span {
+    animation: twinkle 4s ease-in-out infinite;
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.9; }
+}
+
+.joshuana-toc .flame-rule {
+  height: 2px;
+  width: 80px;
+  margin: 20px auto;
+  background: linear-gradient(90deg, transparent, var(--ember), transparent);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 3px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+
+.site-footer {
+  padding: 40px 24px;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  color: rgba(253, 252, 248, 0.5);
+  border-top: 1px solid rgba(201, 162, 39, 0.15);
+}
+
+.admin-form {
+  max-width: 420px;
+  margin: 80px auto;
+  padding: 32px;
+  background: var(--parchment);
+  color: var(--ink);
+  border-radius: var(--radius);
+}
+
+.admin-form input, .admin-form textarea, .admin-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid var(--paper-line);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+.admin-form button {
+  background: var(--forest);
+  color: var(--white);
+  border: none;
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  background: var(--gold);
+  color: var(--ink);
+  padding: 8px 12px;
+  z-index: 100;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
