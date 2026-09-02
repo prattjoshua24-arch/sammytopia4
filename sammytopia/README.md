@@ -45,5 +45,5 @@ automatically.
 
 Log in at `/admin` on your live site. From there you can add new Joshuana
 chapters, new English Made Simple volumes/lessons, new Sammy Speaks
-articles, new Zamar events, new baking/cooking posts, and upload new
+articles, new Zamar events, new baking/cooking posts, and upload new   
 photos or videos to the Media Library — no code changes needed.
