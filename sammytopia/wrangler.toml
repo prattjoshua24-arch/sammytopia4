@@ -6,7 +6,7 @@ pages_build_output_dir = "dist"
 [[d1_databases]]
 binding = "DB"
 database_name = "sammytopia-db"
-database_id ="b7a9e254-299d-4d90-9025-6fe6515775f9"
+database_id = "b7a9e254-299d-4d90-9025-6fe6515775f9"
 
 [[r2_buckets]]
 binding = "MEDIA"
