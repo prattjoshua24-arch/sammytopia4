@@ -3,7 +3,7 @@
 No Limits. No Boundaries. Building Ideas, Shaping Tomorrow.
 ✒ S by Samuel
 
-Samuel Pratt's personal creative platform — books, stories, worship music,
+Samuel Pratt's personal creative platform — books, stories, worship music, 
 an English learning resource, and more — built on Cloudflare (Workers + D1
 + R2), deployed straight from GitHub with no Wrangler CLI required.
 
