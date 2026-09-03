@@ -17,9 +17,11 @@ export default function App() {
   return (
     <>
       <a href="#main" className="skip-link">Skip to content</a>
+
       <header className="site-header">
         <nav aria-label="Primary">
           <Link to="/" className="wordmark">SAMMYTOPIA</Link>
+
           <div className="nav-links">
             <Link to="/joshuana">Joshuana</Link>
             <Link to="/love-happens">Love Happens</Link>
@@ -27,6 +29,7 @@ export default function App() {
             <Link to="/english-made-simple">English Made Simple</Link>
             <Link to="/zamar">Zamar Worshipers</Link>
             <Link to="/baking-and-cooking">Baking &amp; Cooking</Link>
+            <Link to="/honours-and-awards">Honours &amp; Awards</Link>
             <Link to="/gallery">Gallery</Link>
             <Link to="/about">About Samuel</Link>
             <Link to="/search">Search</Link>
@@ -43,19 +46,63 @@ export default function App() {
 
           <Route path="/love-happens" element={<LoveHappens />} />
 
-          <Route path="/sammy-speaks" element={<ContentList type="article" title="Sammy Speaks" />} />
+          <Route
+            path="/sammy-speaks"
+            element={<ContentList type="article" title="Sammy Speaks" />}
+          />
           <Route path="/sammy-speaks/:slug" element={<ContentDetail />} />
 
-          <Route path="/english-made-simple" element={<EnglishMadeSimple />} />
-          <Route path="/english-made-simple/:slug" element={<EnglishMadeSimpleLesson />} />
+          <Route
+            path="/english-made-simple"
+            element={<EnglishMadeSimple />}
+          />
+          <Route
+            path="/english-made-simple/:slug"
+            element={<EnglishMadeSimpleLesson />}
+          />
 
-          <Route path="/zamar" element={<ContentDetail forcedSlug="zamar-worshipers-music-ministry" isZamar />} />
+          <Route
+            path="/zamar"
+            element={
+              <ContentDetail
+                forcedSlug="zamar-worshipers-music-ministry"
+                isZamar
+              />
+            }
+          />
 
-          <Route path="/baking-and-cooking" element={<ContentList type="baking_post" title="Sammy's Baking &amp; Cooking" />} />
+          <Route
+            path="/baking-and-cooking"
+            element={
+              <ContentList
+                type="baking_post"
+                title="Sammy's Baking &amp; Cooking"
+              />
+            }
+          />
           <Route path="/baking-and-cooking/:slug" element={<ContentDetail />} />
 
+          <Route
+            path="/honours-and-awards"
+            element={
+              <ContentList
+                type="honours_award"
+                title="Honours &amp; Awards"
+              />
+            }
+          />
+          <Route
+            path="/honours-and-awards/:slug"
+            element={<ContentDetail />}
+          />
+
           <Route path="/gallery" element={<Gallery />} />
-          <Route path="/about" element={<ContentDetail forcedSlug="about-samuel" />} />
+
+          <Route
+            path="/about"
+            element={<ContentDetail forcedSlug="about-samuel" />}
+          />
+
           <Route path="/search" element={<Search />} />
 
           <Route path="/admin" element={<AdminLogin />} />
@@ -66,7 +113,10 @@ export default function App() {
       </main>
 
       <footer className="site-footer">
-        <p>SAMMYTOPIA — No Limits. No Boundaries. Building Ideas, Shaping Tomorrow.</p>
+        <p>
+          SAMMYTOPIA — No Limits. No Boundaries. Building Ideas, Shaping
+          Tomorrow.
+        </p>
         <p>✒ S by Samuel</p>
       </footer>
     </>
