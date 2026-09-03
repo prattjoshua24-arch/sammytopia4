@@ -6,6 +6,7 @@
 export interface Env {
   DB: D1Database;
   MEDIA: R2Bucket;
+  ASSETS: Fetcher;
   ADMIN_PASSWORD: string; // set as a Cloudflare secret, never hard-coded
 }
 
@@ -257,6 +258,16 @@ async function adminUploadMedia(request: Request, env: Env): Promise<Response> {
   return json({ ok: true, id, key, url: `/media/${key}` });
 }
 
+async function serveMedia(env: Env, key: string): Promise<Response> {
+  const object = await env.MEDIA.get(key);
+  if (!object) return notFound();
+  const headers = new Headers();
+  object.writeHttpMetadata(headers);
+  headers.set("etag", object.httpEtag);
+  headers.set("cache-control", "public, max-age=31536000, immutable");
+  return new Response(object.body, { headers });
+}
+
 // ---------- Router ----------
 
 export default {
@@ -291,6 +302,12 @@ export default {
       return search(env, url);
     }
 
+    // Media, served straight from R2
+    if (path.startsWith("/media/") && request.method === "GET") {
+      const key = path.replace("/media/", "");
+      return serveMedia(env, key);
+    }
+
     // Admin auth
     if (path === "/api/admin/login" && request.method === "POST") {
       return adminLogin(request, env);
@@ -320,6 +337,7 @@ export default {
       return notFound();
     }
 
-    return notFound();
+    // Everything else (the React app itself) is handled by static assets.
+    return env.ASSETS.fetch(request);
   },
 };
