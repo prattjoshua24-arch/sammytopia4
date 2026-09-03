@@ -11,24 +11,14 @@
     --parchment  #F6F0DF   warm reading surface for long-form prose
     --gold       #C9A227   the Sammytopia star / "no limits" accent
     --ember      #B5431F   the Flame of Covenant — used only inside
-                            the Joshuana reader, never as a site-wide
-                            accent, so it stays special to that book
+                            the Joshuana reader
     --forest     #1E4638   English Made Simple / study sections
     --paper-line #E4D9BC   hairline rule on parchment
 
   Type:
-    display — "Fraunces", a warm literary serif with real optical
-      weight, used for titles and the Sammytopia wordmark
-    body    — "Literata", a book-text serif, for manuscript reading
-    ui      — system-ui, for navigation, labels, buttons, admin forms
-
-  Layout: a centred reading column (65ch) for every manuscript page;
-  the homepage is the one asymmetric/hero moment. No card grids —
-  sections are separated by hairline rules and generous whitespace,
-  the way a printed programme or index separates chapters.
-
-  Motion: reduced to one place — the Joshuana intro sequence — and
-  respects prefers-reduced-motion everywhere.
+    display — "Fraunces"
+    body    — "Literata"
+    ui      — system-ui
 */
 
 :root {
@@ -51,14 +41,9 @@
   --radius: 3px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --parchment: #14100a;
-    --parchment-dim: #1b160e;
-    --paper-line: #34291a;
-    --white: #100b16;
-  }
-}
+/* Keep Sammytopia's intended light reading palette.
+   We deliberately do not override these colors based on the
+   phone/browser dark-mode preference. */
 
 * {
   box-sizing: border-box;
@@ -76,7 +61,10 @@ body {
   line-height: 1.6;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: var(--font-display);
   font-weight: 600;
   line-height: 1.15;
@@ -87,12 +75,16 @@ a {
   color: inherit;
 }
 
-img, video {
+img,
+video {
   max-width: 100%;
   display: block;
 }
 
-button, input, textarea, select {
+button,
+input,
+textarea,
+select {
   font-family: var(--font-ui);
 }
 
@@ -107,6 +99,10 @@ button, input, textarea, select {
   margin: 0 auto;
   padding: 0 20px;
 }
+
+/* ---------------------------------------------------------------
+   SITE HEADER
+   --------------------------------------------------------------- */
 
 .site-header {
   position: sticky;
@@ -148,15 +144,24 @@ button, input, textarea, select {
   white-space: nowrap;
 }
 
-.nav-links a:hover, .nav-links a:focus-visible {
+.nav-links a:hover,
+.nav-links a:focus-visible {
   color: var(--gold);
 }
+
+/* ---------------------------------------------------------------
+   HERO
+   --------------------------------------------------------------- */
 
 .hero {
   padding: 64px 24px 48px;
   text-align: center;
   background:
-    radial-gradient(ellipse at 50% -10%, rgba(201, 162, 39, 0.18), transparent 60%),
+    radial-gradient(
+      ellipse at 50% -10%,
+      rgba(201, 162, 39, 0.18),
+      transparent 60%
+    ),
     var(--ink);
 }
 
@@ -242,7 +247,10 @@ section.divider-top {
   margin-top: 4px;
 }
 
-/* Reading surfaces (manuscripts, articles, lessons) sit on parchment */
+/* ---------------------------------------------------------------
+   READING SURFACES
+   --------------------------------------------------------------- */
+
 .reader-page {
   background: var(--parchment);
   color: var(--ink);
@@ -311,10 +319,18 @@ section.divider-top {
   border-bottom: 1px solid var(--gold-dim);
 }
 
-/* Joshuana gets its one special moment: a starfield backdrop on its
-   own table-of-contents page only — not carried into every page. */
+/* ---------------------------------------------------------------
+   JOSHUANA TABLE OF CONTENTS
+   --------------------------------------------------------------- */
+
 .joshuana-toc {
-  background: radial-gradient(ellipse at top, #16233d 0%, #0b1220 55%, #060a13 100%);
+  background:
+    radial-gradient(
+      ellipse at top,
+      #16233d 0%,
+      #0b1220 55%,
+      #060a13 100%
+    );
   color: var(--white);
   position: relative;
   overflow: hidden;
@@ -334,16 +350,31 @@ section.divider-top {
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 0.25; }
-  50% { opacity: 0.9; }
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
 }
 
 .joshuana-toc .flame-rule {
   height: 2px;
   width: 80px;
   margin: 20px auto;
-  background: linear-gradient(90deg, transparent, var(--ember), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--ember),
+    transparent
+  );
 }
+
+/* ---------------------------------------------------------------
+   GALLERY
+   --------------------------------------------------------------- */
 
 .gallery-grid {
   display: grid;
@@ -358,6 +389,10 @@ section.divider-top {
   aspect-ratio: 1;
 }
 
+/* ---------------------------------------------------------------
+   FOOTER
+   --------------------------------------------------------------- */
+
 .site-footer {
   padding: 40px 24px;
   text-align: center;
@@ -366,6 +401,10 @@ section.divider-top {
   color: rgba(253, 252, 248, 0.5);
   border-top: 1px solid rgba(201, 162, 39, 0.15);
 }
+
+/* ---------------------------------------------------------------
+   ADMIN
+   --------------------------------------------------------------- */
 
 .admin-form {
   max-width: 420px;
@@ -376,7 +415,9 @@ section.divider-top {
   border-radius: var(--radius);
 }
 
-.admin-form input, .admin-form textarea, .admin-form select {
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
   width: 100%;
   padding: 10px;
   margin-bottom: 12px;
@@ -395,6 +436,10 @@ section.divider-top {
   font-weight: 600;
 }
 
+/* ---------------------------------------------------------------
+   ACCESSIBILITY
+   --------------------------------------------------------------- */
+
 .skip-link:focus {
   position: fixed;
   top: 8px;
@@ -405,6 +450,7 @@ section.divider-top {
   z-index: 100;
 }
 
+/* Respect reduced-motion preferences without changing the design. */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.001ms !important;
