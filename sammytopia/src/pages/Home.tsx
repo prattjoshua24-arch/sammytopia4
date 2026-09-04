@@ -217,3 +217,93 @@ export default function Intro({ onDone }: { onDone: () => void }) {
               filter: "drop-shadow(0 0 10px rgba(201,162,39,0.6))",
             }}
           />  
+</svg>
+      )}
+
+      {reached("book") && (
+        <div aria-hidden style={{
+          position: "relative", width: 120, height: 84, perspective: 400, margin: "0 auto",
+          animation: step === "book" ? "growLight 1s ease-out both" : undefined,
+          transform: reached("entering") ? "scale(1.4)" : undefined,
+          transition: "transform 1.1s ease-in",
+        }}>
+          <div style={{ position: "absolute", inset: 0, borderRadius: 4, background: "linear-gradient(135deg, #3a2c12, #1c1608)" }} />
+          <div style={{
+            position: "absolute", left: "50%", top: 4, bottom: 4, width: "48%",
+            background: "linear-gradient(120deg, #f3d77e, #c9a227)", borderRadius: "2px 4px 4px 2px",
+            transformOrigin: "left center", boxShadow: "0 0 50px 14px rgba(201,162,39,0.55)",
+            animation: reached("entering") ? "bookOpen 1.1s ease-out forwards" : "bookOpen 1.6s ease-out 0.4s forwards",
+          }} />
+        </div>
+      )}
+
+      {step === "entering" && (
+        <div aria-hidden style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 40, height: 40, borderRadius: "50%", background: "radial-gradient(circle, #fff7dc, #c9a227 60%, transparent 100%)", animation: "zoomIn 1.2s ease-in forwards" }} />
+      )}
+
+      {step === "storybook" && <p style={{ ...introLine, animation: "fadeUp 1s ease-out both", marginTop: 24 }}>A WORLD OF IDEAS AWAITS...</p>}
+      {step === "book" && <p style={{ ...introLine, animation: "fadeUp 1s ease-out 0.6s both", marginTop: 24 }}>TURN THE PAGE.</p>}
+
+      {step === "world" && (
+        <div aria-hidden style={{ position: "relative", width: "70%", maxWidth: 420, height: 140, animation: "fadeUp 1.2s ease-out both" }}>
+          <svg viewBox="0 0 400 160" style={{ width: "100%", height: "100%" }}>
+            <polygon points="170,160 230,160 210,60 190,60" fill="url(#roadGrad)" style={{ animation: "roadGlow 2.4s ease-in-out infinite" }} />
+            <defs><linearGradient id="roadGrad" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stopColor="#f3d77e" stopOpacity="0.9" /><stop offset="100%" stopColor="#f3d77e" stopOpacity="0" /></linearGradient></defs>
+            <rect x="60" y="90" width="18" height="70" fill="#16233d" />
+            <rect x="82" y="70" width="18" height="90" fill="#1c2d4d" />
+            <rect x="300" y="80" width="18" height="80" fill="#1c2d4d" />
+            <rect x="322" y="100" width="18" height="60" fill="#16233d" />
+            <text x="200" y="35" textAnchor="middle" fontSize="20" fill="#f3d77e" style={{ filter: "drop-shadow(0 0 8px #c9a227)" }}>✦</text>
+            <circle cx="200" cy="95" r="14" fill="none" stroke="#c9a227" strokeWidth="1" opacity="0.8" />
+            <ellipse cx="200" cy="95" rx="14" ry="5" fill="none" stroke="#c9a227" strokeWidth="0.7" opacity="0.6" />
+            <line x1="186" y1="95" x2="214" y2="95" stroke="#c9a227" strokeWidth="0.7" opacity="0.6" />
+          </svg>
+        </div>
+      )}
+
+      {reached("logo") && (
+        <div style={{ textAlign: "center", animation: step === "logo" ? "fadeUp 1.2s ease-out both" : undefined }}>
+          <img
+            src="/media/branding/sammytopia-logo.png"
+            alt="Sammytopia logo"
+            style={{ width: 110, margin: "0 auto 14px", animation: "logoFadeIn 1.4s ease-out both", filter: "drop-shadow(0 0 24px rgba(201,162,39,0.5))" }}
+          />
+          <h1 style={{ ...logoText, textShadow: "0 0 30px rgba(201,162,39,0.5)" }}>SAMMYTOPIA</h1>
+          <p style={{ color: "#c9a227", fontFamily: "var(--font-display)", fontStyle: "italic", marginBottom: 4 }}>No Limits. No Boundaries.</p>
+          <p style={{ color: "rgba(253,252,248,0.75)", fontFamily: "var(--font-ui)", fontSize: "0.9rem" }}>Building Ideas, Shaping Tomorrow.</p>
+        </div>
+      )}
+
+      {step === "welcome" && (
+        <p style={{ marginTop: 22, fontFamily: "var(--font-ui)", fontSize: "0.85rem", letterSpacing: "0.04em", color: "rgba(253,252,248,0.6)", animation: "fadeUp 1s ease-out both" }}>
+          WELCOME TO SAMMYTOPIA
+        </p>
+      )}
+    </div>
+  );
+}
+
+function Butterfly({ top, delay, scale }: { top: string; delay: number; scale: number }) {
+  return (
+    <div aria-hidden style={{ position: "absolute", top, left: 0, animation: `flutter ${7 + delay}s ease-in-out ${delay}s 1`, transform: `scale(${scale})` }}>
+      <svg width="26" height="20" viewBox="0 0 26 20">
+        <g style={{ transformOrigin: "13px 10px", animation: "wingFlap 0.4s ease-in-out infinite" }}>
+          <path d="M13 10 C8 0, 0 2, 2 10 C0 18, 8 20, 13 10 Z" fill="#c9a227" opacity="0.85" />
+          <path d="M13 10 C18 0, 26 2, 24 10 C26 18, 18 20, 13 10 Z" fill="#f3d77e" opacity="0.85" />
+        </g>
+        <line x1="13" y1="6" x2="13" y2="14" stroke="#2a1f08" strokeWidth="1" />
+      </svg>
+    </div>
+  );
+}
+
+const introWrap: React.CSSProperties = {
+  position: "fixed", inset: 0, zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center",
+  flexDirection: "column", background: "radial-gradient(ellipse at 50% 30%, #16233d 0%, #0b1220 55%, #05070c 100%)",
+  color: "#fdfcf8", overflow: "hidden", textAlign: "center", cursor: "default",
+};
+
+const eyebrow: React.CSSProperties = { fontFamily: "var(--font-ui)", fontSize: "0.8rem", letterSpacing: "0.06em", color: "#a5841c", marginBottom: 8 };
+const introLine: React.CSSProperties = { fontFamily: "var(--font-display)", fontSize: "clamp(1.1rem, 4vw, 1.6rem)", letterSpacing: "0.04em", color: "#fdfcf8" };
+const logoText: React.CSSProperties = { fontSize: "clamp(2.4rem, 8vw, 4rem)", letterSpacing: "0.03em", color: "#fdfcf8", margin: "0 0 8px" };
+const enterBtn: React.CSSProperties = { marginTop: 24, background: "transparent", border: "1px solid #c9a227", color: "#c9a227", padding: "10px 22px", borderRadius: 3, cursor: "pointer", fontFamily: "var(--font-ui)" };
