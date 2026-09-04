@@ -72,6 +72,17 @@ export const api = {
     remove: (id: string) => req<{ ok: boolean }>(`/api/admin/content/${id}`, { method: "DELETE" }),
     uploadMedia: (form: FormData) =>
       req<{ ok: boolean; id: string; url: string }>("/api/admin/media", { method: "POST", body: form }),
+    listMedia: (category?: string) =>
+      req<{ items: MediaItem[] }>(
+        `/api/admin/media${category ? `?category=${encodeURIComponent(category)}` : ""}`
+      ).then((r) => r.items),
+    updateMedia: (id: string, item: Partial<MediaItem>) =>
+      req<{ ok: boolean }>(`/api/admin/media/${id}`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(item),
+      }),
+    removeMedia: (id: string) => req<{ ok: boolean }>(`/api/admin/media/${id}`, { method: "DELETE" }),
   },
 };
 
