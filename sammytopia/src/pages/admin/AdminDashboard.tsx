@@ -1,6 +1,6 @@
 import { Routes, Route, Link } from "react-router-dom";
 
-import Home from "./pages/Home";
+import Home from "../Home";
 import JoshuanaToc from "./pages/JoshuanaToc";
 import JoshuanaChapter from "./pages/JoshuanaChapter";
 import ContentList from "./pages/ContentList";
