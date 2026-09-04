@@ -28,188 +28,55 @@ export default function App() {
 
           <div className="nav-links">
             <Link to="/joshuana">Joshuana</Link>
-
-            <Link to="/love-happens">
-              Love Happens
-            </Link>
-
-            <Link to="/sammy-speaks">
-              Sammy Speaks
-            </Link>
-
-            <Link to="/english-made-simple">
-              English Made Simple
-            </Link>
-
-            <Link to="/zamar">
-              Zamar Worshipers
-            </Link>
-
-            <Link to="/baking-and-cooking">
-              Baking &amp; Cooking
-            </Link>
-
-            <Link to="/honours-and-awards">
-              Honours &amp; Awards
-            </Link>
-
-            <Link to="/gallery">
-              Gallery
-            </Link>
-
-            <Link to="/about">
-              About Samuel
-            </Link>
-
-            <Link to="/search">
-              Search
-            </Link>
+            <Link to="/love-happens">Love Happens</Link>
+            <Link to="/sammy-speaks">Sammy Speaks</Link>
+            <Link to="/english-made-simple">English Made Simple</Link>
+            <Link to="/zamar">Zamar Worshipers</Link>
+            <Link to="/baking-and-cooking">Baking &amp; Cooking</Link>
+            <Link to="/honours-and-awards">Honours &amp; Awards</Link>
+            <Link to="/gallery">Gallery</Link>
+            <Link to="/about">About Samuel</Link>
+            <Link to="/search">Search</Link>
           </div>
         </nav>
       </header>
 
       <main id="main">
         <Routes>
-          {/* Home */}
-          <Route
-            path="/"
-            element={<Home />}
-          />
+          <Route path="/" element={<Home />} />
 
-          {/* Joshuana */}
-          <Route
-            path="/joshuana"
-            element={<JoshuanaToc />}
-          />
+          <Route path="/joshuana" element={<JoshuanaToc />} />
+          <Route path="/joshuana/:slug" element={<JoshuanaChapter />} />
 
-          <Route
-            path="/joshuana/:slug"
-            element={<JoshuanaChapter />}
-          />
+          <Route path="/love-happens" element={<LoveHappens />} />
 
-          {/* Love Happens */}
-          <Route
-            path="/love-happens"
-            element={<LoveHappens />}
-          />
+          <Route path="/sammy-speaks" element={<ContentList type="article" title="Sammy Speaks" />} />
+          <Route path="/sammy-speaks/:slug" element={<ContentDetail />} />
 
-          {/* Sammy Speaks */}
-          <Route
-            path="/sammy-speaks"
-            element={
-              <ContentList
-                type="article"
-                title="Sammy Speaks"
-              />
-            }
-          />
+          <Route path="/english-made-simple" element={<EnglishMadeSimple />} />
+          <Route path="/english-made-simple/:slug" element={<EnglishMadeSimpleLesson />} />
 
-          <Route
-            path="/sammy-speaks/:slug"
-            element={<ContentDetail />}
-          />
+          <Route path="/zamar" element={<ContentDetail forcedSlug="zamar-worshipers-music-ministry" isZamar />} />
 
-          {/* English Made Simple */}
-          <Route
-            path="/english-made-simple"
-            element={<EnglishMadeSimple />}
-          />
+          <Route path="/baking-and-cooking" element={<ContentList type="baking_post" title="Sammy's Baking & Cooking" />} />
+          <Route path="/baking-and-cooking/:slug" element={<ContentDetail />} />
 
-          <Route
-            path="/english-made-simple/:slug"
-            element={<EnglishMadeSimpleLesson />}
-          />
+          <Route path="/honours-and-awards" element={<ContentList type="honours_award" title="Honours & Awards" />} />
+          <Route path="/honours-and-awards/:slug" element={<ContentDetail />} />
 
-          {/* Zamar Worshipers */}
-          <Route
-            path="/zamar"
-            element={
-              <ContentDetail
-                forcedSlug="zamar-worshipers-music-ministry"
-                isZamar
-              />
-            }
-          />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/about" element={<ContentDetail forcedSlug="about-samuel" />} />
+          <Route path="/search" element={<Search />} />
 
-          {/* Baking & Cooking */}
-          <Route
-            path="/baking-and-cooking"
-            element={
-              <ContentList
-                type="baking_post"
-                title="Sammy's Baking & Cooking"
-              />
-            }
-          />
+          <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
 
-          <Route
-            path="/baking-and-cooking/:slug"
-            element={<ContentDetail />}
-          />
-
-          {/* Honours & Awards */}
-          <Route
-            path="/honours-and-awards"
-            element={
-              <ContentList
-                type="honours_award"
-                title="Honours & Awards"
-              />
-            }
-          />
-
-          <Route
-            path="/honours-and-awards/:slug"
-            element={<ContentDetail />}
-          />
-
-          {/* Gallery */}
-          <Route
-            path="/gallery"
-            element={<Gallery />}
-          />
-
-          {/* About */}
-          <Route
-            path="/about"
-            element={
-              <ContentDetail
-                forcedSlug="about-samuel"
-              />
-            }
-          />
-
-          {/* Search */}
-          <Route
-            path="/search"
-            element={<Search />}
-          />
-
-          {/* Admin */}
-          <Route
-            path="/admin"
-            element={<AdminLogin />}
-          />
-
-          <Route
-            path="/admin/dashboard"
-            element={<AdminDashboard />}
-          />
-
-          {/* 404 */}
-          <Route
-            path="*"
-            element={<NotFound />}
-          />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
 
       <footer className="site-footer">
-        <p>
-          SAMMYTOPIA — No Limits. No Boundaries.
-          Building Ideas, Shaping Tomorrow.
-        </p>
-
+        <p>SAMMYTOPIA — No Limits. No Boundaries. Building Ideas, Shaping Tomorrow.</p>
         <p>✒ S by Samuel</p>
       </footer>
     </>
